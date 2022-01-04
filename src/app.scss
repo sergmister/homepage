@@ -1,0 +1,53 @@
+@import "@fontsource/lato";
+@import "@fontsource/source-code-pro";
+
+@import "highlight.js/scss/atom-one-dark.scss";
+
+@import "katex/dist/katex.min.css";
+@import "markdown-it-texmath/css/texmath.css";
+
+:root {
+	font-family: "Lato", sans-serif;
+
+	--background-color: #f4f4f4;
+
+	--text-color: #333333;
+
+	--blue: #1c39bb;
+	--turquoise: #54a0ff;
+
+	color: var(--text-color);
+}
+
+code {
+	font-family: "Source Code Pro", monospace;
+	background-color: rgba(110, 118, 129, 0.2);
+	padding: 0 5px;
+	border-radius: 6px;
+}
+
+// pre > code {
+// 	box-shadow: 4px 4px 0px 0px var(--Ship-Gray);
+// }
+
+// img {
+// 	border-radius: 8px;
+// 	box-shadow: 4px 4px 0px 0px var(--Ship-Gray);
+// }
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: var(--background-color) url("/images/noise.png");
+	font-size: 21px;
+}
