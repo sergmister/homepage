@@ -2,6 +2,8 @@ import path from "path";
 import preprocess from "svelte-preprocess";
 import adapter from "@sveltejs/adapter-static";
 
+const dev = process.env.NODE_ENV === "development";
+
 const post_ids = [];
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -31,12 +33,15 @@ const config = {
 			},
 		},
 		adapter: adapter({
-			pages: "build",
-			assets: "build",
-			fallback: null,
+			// pages: "build",
+			// assets: "build",
+			// fallback: null,
 		}),
 		prerender: {
 			entries: post_ids.map((id) => `/blog/${id}`),
+		},
+		paths: {
+			base: dev ? "" : "/homepage",
 		},
 	},
 };
