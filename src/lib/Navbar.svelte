@@ -34,7 +34,7 @@
 				</a>
 			</li>
 			<li class="social-link linkedin">
-				<a href="https://www.linkedin.com/in/sergii-penner-510921207/">
+				<a href="https://www.linkedin.com/in/sergiipenner/">
 					<svg viewBox="0 0 24 24">
 						<title>LinkedIn</title>
 						<path
