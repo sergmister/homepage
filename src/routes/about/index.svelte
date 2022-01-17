@@ -1,4 +1,4 @@
-<h1>About Sergii Penner</h1>
+<h1>About Me</h1>
 
 <p>
 	I am a software developer and AI enthusiast studying Applied Mathematics and Computer Science at the University of

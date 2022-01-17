@@ -26,6 +26,8 @@
 	<title>{title}</title>
 </svelte:head>
 
+<!-- TODO: make math and images scroll, not expand width of the whole page -->
+
 <div class="container">
 	<div class="title">
 		<h1>{title}</h1>
