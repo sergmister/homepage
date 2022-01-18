@@ -34,7 +34,7 @@ const config = {
 		adapter: adapter({
 			pages: "build",
 			assets: "build",
-			fallback: "404.html",
+			// fallback: "404.html", // something going on with how the page is being fetched
 			precompress: false,
 		}),
 
