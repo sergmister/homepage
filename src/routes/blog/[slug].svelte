@@ -50,5 +50,13 @@
 	.markdown-container {
 		overflow-wrap: break-word;
 		text-rendering: optimizeLegibility;
+
+		:global(.center_image) {
+			display: block;
+			width: min(100%, 600px);
+			margin-left: auto;
+			margin-right: auto;
+			border-radius: 5%;
+		}
 	}
 </style>

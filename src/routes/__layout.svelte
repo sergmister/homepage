@@ -54,7 +54,7 @@
 			left: 20px;
 			float: left;
 			margin: 0;
-			width: 196px;
+			width: 192px;
 		}
 	}
 

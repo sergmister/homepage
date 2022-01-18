@@ -4,12 +4,28 @@
 </script>
 
 <nav>
+	{#if $page.url.pathname !== "/"}
+		<style lang="scss">
+			.divider {
+				@media screen and (min-width: 1400px) {
+					display: block;
+					width: 100%;
+				}
+			}
+		</style>
+	{/if}
+
 	<ul class:homepage={$page.url.pathname === "/"}>
 		<li class:current={$page.url.pathname === "/"}><a sveltekit:prefetch href="/">Sergii Penner</a></li>
+		<span class="divider" />
 		<li class:current={$page.url.pathname === "/about"}><a sveltekit:prefetch href="/about">About</a></li>
+		<span class="divider" />
 		<li class:current={$page.url.pathname === "/projects"}><a sveltekit:prefetch href="/projects">Projects</a></li>
+		<span class="divider" />
 		<li class:current={$page.url.pathname === "/gallery"}><a sveltekit:prefetch href="/gallery">Gallery</a></li>
+		<span class="divider" />
 		<li class:current={$page.url.pathname === "/blog"}><a sveltekit:prefetch href="/blog">Blog</a></li>
+		<span class="divider" />
 		<li class:current={$page.url.pathname === "/archive"}><a sveltekit:prefetch href="/archive">Archive</a></li>
 		<div class="social-links" class:homepage={$page.url.pathname === "/"}>
 			<li class="social-link email">
@@ -71,17 +87,17 @@
 				a {
 					display: block;
 					text-decoration: none;
-					padding: 6px 8px;
-					margin: 8px 8px;
+					padding: 0.3em 0.4em;
+					margin: 0.4em 0.4em;
 					color: var(--blue);
-					border: 6px solid var(--blue);
-					border-radius: 12px;
-					box-shadow: 4px 4px 0px 0px var(--turquoise);
+					border: 0.3em solid var(--blue);
+					border-radius: 0.6em;
+					box-shadow: 0.2em 0.2em 0 0 var(--turquoise);
 					transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
 
 					&:hover {
-						transform: translate(-1px, -1px) scale(1.04);
-						box-shadow: 6px 6px 4px 0px var(--turquoise);
+						transform: translate(-0.05em, -0.05em);
+						box-shadow: 0.3em 0.3em 0.2em 0 var(--turquoise);
 					}
 				}
 			}
@@ -105,10 +121,14 @@
 	.social-link {
 		a {
 			box-sizing: content-box;
-			width: 33px;
-			height: 33px;
-			padding: 2px;
+			width: 1.65em;
+			height: 1.65em;
+			padding: 0.1em;
+
 			svg {
+				width: 1.65em;
+				height: 1.65em;
+				padding: 0;
 				fill: var(--blue);
 			}
 		}
@@ -126,7 +146,6 @@
 
 	.linkedin {
 		svg {
-			padding: 1px;
 		}
 	}
 </style>
