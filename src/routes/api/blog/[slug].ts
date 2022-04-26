@@ -10,6 +10,7 @@ import katex from "katex";
 import type { RequestHandler } from "@sveltejs/kit";
 
 import { posts } from "src/list";
+import type { PostData } from "src/global";
 
 const md = new MarkdownIt({ html: true });
 
@@ -61,6 +62,6 @@ export const get: RequestHandler = async (request) => {
 		body: {
 			html,
 			...post,
-		},
+		} as PostData,
 	};
 };

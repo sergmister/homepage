@@ -1,12 +1,13 @@
 <script context="module" lang="ts">
 	import type { Load } from "@sveltejs/kit";
+	import type { PostData } from "src/global";
 
 	export const load: Load = async ({ params, fetch, session, stuff }) => {
 		const response = await fetch(`/api/blog/${params.slug}`);
 		if (!response.ok) {
-			return;
+			return { error: response.statusText };
 		}
-		const props = await response.json();
+		const props = (await response.json()) as PostData;
 		return { props };
 	};
 </script>
@@ -20,6 +21,8 @@
 	export let date: string;
 	export let author: string;
 	export let tags: Tag[];
+
+	let dateObject = new Date(date);
 </script>
 
 <svelte:head>
@@ -31,6 +34,7 @@
 <div class="container">
 	<div class="title">
 		<h1>{title}</h1>
+		<p>{author} • {dateObject.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}</p>
 	</div>
 	<div class="markdown-container">
 		{@html html}
@@ -42,8 +46,18 @@
 	}
 
 	.title {
+		margin: 0.4em;
+
 		h1 {
 			text-align: center;
+			margin-bottom: 0.4em;
+		}
+
+		p {
+			text-align: center;
+			font-style: italic;
+			opacity: 0.8;
+			margin-top: 0.2em;
 		}
 	}
 

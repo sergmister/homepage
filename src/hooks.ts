@@ -4,30 +4,14 @@ import type { Handle } from "@sveltejs/kit";
 import { minify } from "html-minifier-terser";
 import { prerendering } from "$app/env";
 
-export const handle: Handle = async ({ request, resolve }) => {
-	const cookies = cookie.parse(request.headers.cookie || "");
-	request.locals.userid = cookies.userid || uuid();
-
-	// TODO https://github.com/sveltejs/kit/issues/1046
-	const method = request.url.searchParams.get("_method");
-	if (method) {
-		request.method = method.toUpperCase();
-	}
-
-	const response = await resolve(request);
-
-	if (!cookies.userid) {
-		// if this is the first time the user has visited this app,
-		// set a cookie so that we recognise them when they return
-		response.headers["set-cookie"] = cookie.serialize("userid", request.locals.userid, {
-			path: "/",
-			httpOnly: true,
-		});
-	}
+export const handle: Handle = async ({ event, resolve }) => {
+	const response = await resolve(event);
 
 	// even worth it?
-	if (prerendering && response.headers["content-type"] === "text/html") {
-		response.body = await minify(response.body as string, {
+	if (prerendering && response.headers.get("content-type")?.startsWith("text/html")) {
+		const body = await response.text();
+
+		const minified = await minify(body as string, {
 			collapseBooleanAttributes: true,
 			collapseWhitespace: true,
 			decodeEntities: true,
@@ -44,6 +28,8 @@ export const handle: Handle = async ({ request, resolve }) => {
 			sortAttributes: true,
 			sortClassName: true,
 		});
+
+		return new Response(minified, response);
 	}
 
 	return response;
