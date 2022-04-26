@@ -43,6 +43,8 @@ const config = {
 		prerender: {
 			entries: ["*", ...post_ids.map((id) => `/blog/${id}`)],
 			crawl: true,
+			default: true,
+			enabled: true,
 		},
 	},
 };
